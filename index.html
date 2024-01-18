@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HDR Color Converter</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			margin: 0;
+			color: #eee;
+			background-color: black;
+			font-family: sans-serif;
+		}
+
+		div {
+			background-color: #222;
+			border-radius: 10px;
+		}
+
+		a {
+			color: #ddd;
+		}
+
+		a:hover {
+			color: #fff;
+		}
+
+		input {
+			color: #eee;
+			background-color: #222;
+			font-size: 24px;
+			width: 400px;
+			border-style: solid;
+			border-radius: 10px;
+			padding: 5px;
+		}
+
+		.row {
+			height: 120px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 10px;
+			margin-bottom: 10px;
+		}
+
+		.row label,
+		.row input {
+			margin: 0 5px;
+		}
+
+		.col {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			padding: 10px;
+			padding-left: 0;
+		}
+
+		.category {
+			width: 120px;
+			height: 110px;
+			padding-top: 10px;
+			text-align: center;
+			color: black;
+			text-shadow: white 0px 0px 5px;
+		}
+
+		#sdr {
+			background: conic-gradient(color(srgb 0 0 1),
+					color(srgb 1 0 1),
+					color(srgb 1 0 0),
+					color(srgb 1 1 0),
+					color(srgb 0 1 0),
+					color(srgb 0 1 1),
+					color(srgb 0 0 1));
+		}
+
+		#hdr {
+			background: conic-gradient(color(display-p3 0 0 1),
+					color(display-p3 1 0 1),
+					color(display-p3 1 0 0),
+					color(display-p3 1 1 0),
+					color(display-p3 0 1 0),
+					color(display-p3 0 1 1),
+					color(display-p3 0 0 1));
+		}
+
+		.swatch {
+			width: 120px;
+			height: 100%;
+		}
+
+		footer {
+			color: #ddd;
+			font-size: 16px;
+		}
+	</style>
+	<script src="https://unpkg.com/culori@3.3.0/bundled/culori.min.js"></script>
+	<script src="convert.js"></script>
+</head>
+
+<body>
+	<a href="https://github.com/quinton-ashley/hdr-color-converter">
+		<h2>HDR Color Converter</h2>
+	</a>
+
+	<article>
+		<div class="row">
+			<div id="sdr" class="category">SDR</div>
+			<div id="sdr-swatch" class="swatch"></div>
+			<div class="col">
+				<div>
+					<input type="text" id="hexColor" name="hexColor" value="#ff0a52" oninput="updateColors()">
+				</div>
+				<div>
+					<input id="rgbColor" value="rgb(...)">
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div id="hdr" class="category">HDR</div>
+			<div id="hdr-swatch" class="swatch"></div>
+			<div class="col">
+				<div>
+					<input id="displayP3Color" value="color(display-p3 ...)">
+				</div>
+				<div>
+					<input id="oklchColor" value="oklch(...)">
+				</div>
+			</div>
+		</div>
+	</article>
+
+	<footer>created by <a href="https://github.com/quinton-ashley">@quinton-ashley</a>
+	</footer>
+
+</body>
+
+</html>
