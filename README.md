@@ -18,9 +18,7 @@ Using HDR colors is the only way to access the full range of colors on HDR devic
 
 ## How do I use the HDR colors on my website?
 
-You can use the [@media (color-gamut)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) media query to apply these colors only to HDR devices.
-
-Fallback to sRGB for non-HDR devices:
+You can use the [@media (color-gamut)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) media query to apply these colors only to HDR devices and fallback to sRGB for non-HDR devices.
 
 ```css
 body {
@@ -54,17 +52,23 @@ There are probably color settings you can adjust in Illustrator but my SVGs were
 
 I added a CSS `<style>` tag to the SVG and gave all the paths a class name. Note that media queries don't work in SVGs, so you should just use oklch colors.
 
+Check out this article for more info:
+
+https://evilmartians.com/chronicles/how-to-use-p3-colors-in-svg
+
 ## How'd you figure all this out?
 
 I realized that a long time ago I'd set my MacBook's Color Display Profile to "sRGB IEC61966-2.1", which can be done in System Preferences. It makes sRGB colors look great by just mapping them directly to the full P3 color space of the display.
 
-But I noticed that when viewing my website on my iPhone, the colors looked dull. There's no way to change the Color Display Profile on iOS. I also think most people would never think to change their Color Display Profile, even if the option was available. So if I wanted my website to look vibrant on iOS, I needed to find a solution.
+But I noticed that when viewing my website on my iPhone, the colors looked dull. I needed to find a way to make the website look good using the default color profiles that come with the devices.
 
-I changed my Color Display Profile on my MacBook to the default "Color LCD", which is very similar to P3 and it caused the colors on my website looked dull on my MacBook just like they did on my iPhone.
+I changed my Color Display Profile on my MacBook back to the default "Color LCD", which is very similar to P3 and it caused the colors on my website looked dull on my MacBook just like they did on my iPhone.
 
-So then if I opened up my website assets in InkScape and Photoshop, they'd look great in the editor, but after exporting they'd look dull. I tried to mess around with the export settings but nothing worked.
+If I opened up my website assets in InkScape and Photoshop, they'd look great in the editor, but after exporting they'd look dull. I tried to mess around with the export settings but nothing worked. I was so confused.
 
-After lots of searching, I finally found this video [Get Started with Display P3](https://developer.apple.com/videos/play/wwdc2017/821). It kind of sucks because it's not in HDR and the projector they used didn't support HDR either. So all the examples they're showing are totally faked, which is ridiculous. It's like TV marketing material levels of exaggeration. At least the video provides some good information about how to use HDR colors.
+After lots of searching, I finally found this video [Get Started with Display P3](https://developer.apple.com/videos/play/wwdc2017/821). It kind of sucks because it's not in HDR and the projector they used didn't support HDR either, so all the examples they're showing are fake. At least the video provides some good information about how to use HDR colors though.
+
+The little SDR and HDR color demos shown in this tool are legit and if you have an HDR device you can see for yourself that the HDR colors are more vibrant.
 
 ## License
 
