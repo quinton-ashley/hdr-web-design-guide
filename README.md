@@ -4,6 +4,8 @@ Web design tool to convert colors to HDR.
 
 Let's make the web more vibrant!
 
+https://quinton-ashley.github.io/hdr-color-converter/
+
 ## Why do colors look different on my HDR device?
 
 HDR devices, including any Apple device made after 2016, can display more vibrant reds and greens than the sRGB color space. However, by default, these devices convert sRGB colors to a limited range of the P3 color space. The intention behind this is to approximate what the colors would look like on an sRGB display. But in my opinion, this is really confusing for artists and designers who just want to take advantage of the wider color gamut.
