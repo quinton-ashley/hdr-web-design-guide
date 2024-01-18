@@ -1,148 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>HDR Color Converter</title>
+	<title>HDR Web Design Guide</title>
 	<link rel="icon" href="favicon.png" />
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+	<link rel="stylesheet" href="style.css">
 	<style>
-		body {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			font-size: 24px;
-			margin: 0;
+		html body {
 			color: #eee;
 			background-color: black;
-			font-family: sans-serif;
 		}
 
-		div {
+		article {
 			background-color: #222;
-			border-radius: 10px;
+			padding: 20px;
 		}
 
-		a {
-			color: #ddd;
+		h1 {
+			margin-top: 0 !important;
 		}
 
-		a:hover {
-			color: #fff;
+		article,
+		iframe,
+		pre {
+			border-radius: 10px !important;
 		}
 
-		input {
-			color: #eee;
-			background-color: #222;
-			font-size: 24px;
-			width: 400px;
-			border-style: solid;
-			border-radius: 10px;
-			padding: 5px;
+		code,
+		pre {
+			background-color: #333 !important;
 		}
 
-		.row {
-			height: 120px;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			gap: 10px;
-			margin-bottom: 10px;
-		}
-
-		.row label,
-		.row input {
-			margin: 0 5px;
-		}
-
-		.col {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-			padding: 10px;
-			padding-left: 0;
-		}
-
-		.category {
-			width: 120px;
-			height: 110px;
-			padding-top: 10px;
-			text-align: center;
-			color: black;
-			text-shadow: white 0px 0px 5px;
-		}
-
-		#sdr {
-			background: conic-gradient(color(srgb 0 0 1),
-					color(srgb 1 0 1),
-					color(srgb 1 0 0),
-					color(srgb 1 1 0),
-					color(srgb 0 1 0),
-					color(srgb 0 1 1),
-					color(srgb 0 0 1));
-		}
-
-		#hdr {
-			background: conic-gradient(color(display-p3 0 0 1),
-					color(display-p3 1 0 1),
-					color(display-p3 1 0 0),
-					color(display-p3 1 1 0),
-					color(display-p3 0 1 0),
-					color(display-p3 0 1 1),
-					color(display-p3 0 0 1));
-		}
-
-		.swatch {
-			width: 120px;
-			height: 100%;
-		}
-
-		footer {
-			color: #ddd;
-			font-size: 16px;
+		h1,
+		h2 {
+			color: #eee !important;
 		}
 	</style>
-	<script src="https://unpkg.com/culori@3.3.0/bundled/culori.min.js"></script>
-	<script src="convert.js"></script>
 </head>
 
-<body>
-	<a href="https://github.com/quinton-ashley/hdr-color-converter">
-		<h2>HDR Color Converter</h2>
-	</a>
+<body for="html-export">
+	<div class="crossnote markdown-preview  ">
+		<article>
+			<h1 id="hdr-web-design-guide">HDR Web Design Guide </h1>
+			<p>Let's make the web more vibrant!</p>
+			<h2 id="what-is-hdr">What is HDR? </h2>
+			<p>HDR (High Dynamic Range) colors aren't just for movies and games, you can use them to make better looking
+				websites too!</p>
+			<p>Nearly every smartphone, laptop, television, and tablet made after 2016 is capable of displaying vibrant HDR
+				colors. The difference between SDR (Standard Dynamic Range) and HDR is especially noticeable in vivid reds and
+				greens,
+				which look dull on SDR displays.</p>
+			<p>Yet by default, SDR colors are mapped to a limited range (gamut) of your device's HDR color space. The
+				intention
+				behind this is to approximate what the colors would look like on an SDR display, to maintain color consistency
+				across devices. As a result though, SDR content still looks pretty dull!</p>
+			<p>What good are all these HDR displays if we're not going to use them to their full potential? People are
+				spending
+				7 hours a day looking at these things. They deserve better! Us web designers need to do our part to add vibrant
+				colors to the web and I've compiled this guide to help you
+				do
+				it.</p>
+			<h2 id="hdr-color-conversion">HDR Color Conversion </h2>
+			<iframe style="border:none;" width="100%" height="312px" src="converter.html"></iframe>
+			<p>This <a href="converter.html">HDR Color Converter</a>
+				converts SDR colors directly to HDR, without mapping to the smaller SDR gamut, essentially giving you
+				more vibrant colors to use on HDR devices.</p>
+			<p>"srgb" is a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color">color space</a> that
+				became the standard for the web in 1996. You've probably been using it in the iconic HEX format. It's a bit sad,
+				but to use HDR colors you'll need to use a different format. All HDR devices support the "display-p3" color
+				space
+				and newer devices support the "rec2020" color space.</p>
+			<p>To use the converter, simply plug in your HEX color and it'll pop out an HDR color in the
+				<code>color(display-p3, ...)</code> and <code>oklch(lightness, chroma, hue)</code> formats.
+			</p>
+			<p>I recommend using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch">oklch</a>, which
+				is supported by all modern browsers.</p>
+			<p>If you want to do a legit gamut conversion, use the <a href="https://oklch.com/">oklch color converter</a>.</p>
+			<h2 id="how-do-i-use-hdr-colors-in-css">How do I use HDR colors in CSS? </h2>
+			<p>You can use the CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut">@media
+					(color-gamut)</a> media query to apply these colors only to HDR devices and fallback to sRGB for non-HDR
+				devices.</p>
+			<pre data-role="codeBlock" data-info="css" class="language-css css"><code><span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token hexcode color">#ff0a52</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-	<article>
-		<div class="row">
-			<div id="sdr" class="category">SDR</div>
-			<div id="sdr-swatch" class="swatch"></div>
-			<div class="col">
-				<div>
-					<input type="text" id="hexColor" name="hexColor" value="#ff0a52" oninput="updateColors()">
-				</div>
-				<div>
-					<input id="rgbColor" value="rgb(...)">
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div id="hdr" class="category">HDR</div>
-			<div id="hdr-swatch" class="swatch"></div>
-			<div class="col">
-				<div>
-					<input id="displayP3Color" value="color(display-p3 ...)">
-				</div>
-				<div>
-					<input id="oklchColor" value="oklch(...)">
-				</div>
-			</div>
-		</div>
-	</article>
-
-	<footer>created by <a href="https://github.com/quinton-ashley">@quinton-ashley</a>
-	</footer>
-
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">color-gamut</span><span class="token punctuation">:</span> p3<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">body</span> <span class="token punctuation">{</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">oklch</span><span class="token punctuation">(</span><span class="token number">0.657</span> <span class="token number">0.294</span> <span class="token number">16.668</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+			<p>My HDR converter tool rounds oklch values to 3 decimal places, since more precision isn't really necessary and
+				long numbers would just make your CSS file bigger.</p>
+			<h2 id="how-do-i-get-images-to-display-in-hdr">How do I get images to display in HDR? </h2>
+			<p>To directly map sRGB colors in an image to an HDR color space, you'll need to use a photo editor that supports
+				HDR color spaces. Here's how to do it in Photoshop:</p>
+			<p>In Photoshop's menu go to Edit &gt; Color Settings...</p>
+			<p>Set "Working Space" RGB to "Display P3" (or whatever HDR color space you want to use).</p>
+			<p>Then set "Color Management Policies" RGB to "Convert to Working RGB".</p>
+			<p>When you export an image make sure that "Convert to sRGB" is unchecked and "Embed Color Profile" is checked.
+			</p>
+			<p>After exporting an image it should have your specified HDR color space embedded in it.</p>
+			<h2 id="how-do-i-get-svgs-to-display-in-hdr">How do I get SVGs to display in HDR? </h2>
+			<p>There are probably color settings you can adjust in Illustrator but my SVGs were pretty simple so I just
+				changed
+				the colors directly in the SVG code.</p>
+			<p>I added a CSS <code>&lt;style&gt;</code> tag to the SVG and gave all the paths a class name. Note that media
+				queries don't work in SVGs, so you should just use oklch colors.</p>
+			<p>Check out the article <a href="https://evilmartians.com/chronicles/how-to-use-p3-colors-in-svg">"How to use P3
+					colors with SVGs"</a> for more info.</p>
+			<h2 id="how-do-i-use-hdr-colors-in-javascript">How do I use HDR colors in JavaScript? </h2>
+			<p>First check if the device is HDR capable:</p>
+			<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-let">let</span> hdrCapable <span class="token operator">=</span> <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token method function property-access">matchMedia</span><span class="token punctuation">(</span><span class="token string">'(dynamic-range: high) and (color-gamut: p3)'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token property-access">matches</span><span class="token punctuation">;</span>
+</code></pre>
+			<p>You can use the <a href="https://culorijs.org/">culori</a> library to parse colors and convert between color
+				spaces.</p>
+			<p>Take a look at the article <a href="https://habr.com/en/articles/715084/">"HDR Displays and CSS: Enhancing
+					Color
+					and Brightness on the Web"</a> for more info.</p>
+			<h2 id="howd-you-figure-all-this-out">How'd you figure all this out? </h2>
+			<p>I realized that a long time ago I'd set my MacBook's Color Display Profile to "sRGB IEC61966-2.1", which can be
+				done in System Preferences. It makes sRGB colors look great by just mapping them directly to the full P3 color
+				space of the display.</p>
+			<p>But I noticed that when viewing my website on my iPhone, the colors looked dull. I needed to find a way to make
+				the website look good using the default color profiles that come with the devices.</p>
+			<p>I changed my Color Display Profile on my MacBook back to the default "Color LCD", which is very similar to P3
+				and
+				it caused the colors on my website looked dull on my MacBook just like they did on my iPhone.</p>
+			<p>If I opened up my website assets in InkScape and Photoshop, they'd look great in the editor, but after
+				exporting
+				they'd look dull. I tried to mess around with the export settings but nothing worked. I was so confused.</p>
+			<p>After lots of searching, I finally found this video <a
+					href="https://developer.apple.com/videos/play/wwdc2017/821">Get Started with Display P3</a>. It kind of sucks
+				because it's not in HDR and the projector they used didn't support HDR either, so all the examples they're
+				showing
+				are fake. At least the video provides some good information.</p>
+			<h2 id="license">License </h2>
+			<p>CC0 - Public Domain</p>
+		</article>
+	</div>
 </body>
 
 </html>

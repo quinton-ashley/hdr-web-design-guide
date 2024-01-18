@@ -1,24 +1,32 @@
-# HDR Color Converter
-
-Web design tool to convert colors to HDR.
+# HDR Web Design Guide
 
 Let's make the web more vibrant!
 
-https://quinton-ashley.github.io/hdr-color-converter/
+## What is HDR?
 
-## Why do colors look different on my HDR device?
+HDR (High Dynamic Range) colors aren't just for movies and games, you can use them to make better looking websites too!
 
-HDR devices, including any Apple device made after 2016, can display more vibrant reds and greens than the sRGB color space. However, by default, these devices convert sRGB colors to a limited range of the P3 color space. The intention behind this is to approximate what the colors would look like on an sRGB display. But in my opinion, this is really confusing for artists and designers who just want to take advantage of the wider color gamut.
+Nearly every smartphone, laptop, television, and tablet made after 2016 is capable of displaying vibrant HDR colors. The difference between SDR (Standard Dynamic Range) and HDR is especially noticeable in vivid reds and greens, which look dull on SDR displays.
 
-## What does this tool do?
+Yet by default, SDR colors are mapped to a limited range (gamut) of your device's HDR color space. The intention behind this is to approximate what the colors would look like on an SDR display, to maintain color consistency across devices. As a result though, SDR content still looks pretty dull!
 
-This tool converts sRGB colors directly to the P3 color space, without mapping them to the smaller sRGB gamut. This effectively makes the colors more vibrant on HDR devices.
+What good are all these HDR displays if we're not going to use them to their full potential? People are spending 7 hours a day looking at these things. They deserve better! Us web designers need to do our part to add vibrant colors to the web and I've compiled this guide to help you do it.
 
-Using HDR colors is the only way to access the full range of colors on HDR devices.
+## HDR Color Conversion
 
-## How do I use the HDR colors on my website?
+This [HDR Color Converter](converter.html) converts SDR colors directly to HDR, without mapping to the smaller SDR gamut, essentially giving you more vibrant colors to use on HDR devices.
 
-You can use the [@media (color-gamut)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) media query to apply these colors only to HDR devices and fallback to sRGB for non-HDR devices.
+"srgb" is a [color space](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color) that became the standard for the web in 1996. You've probably been using it in the iconic HEX format. It's a bit sad, but to use HDR colors you'll need to use a different format. All HDR devices support the "display-p3" color space and newer devices support the "rec2020" color space.
+
+To use the converter, simply plug in your HEX color and it'll pop out an HDR color in the `color(display-p3, ...)` and `oklch(lightness, chroma, hue)` formats.
+
+I recommend using [oklch](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch), which is supported by all modern browsers.
+
+If you want to do a legit gamut conversion, use the [oklch color converter](https://oklch.com/).
+
+## How do I use HDR colors in CSS?
+
+You can use the CSS [@media (color-gamut)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) media query to apply these colors only to HDR devices and fallback to sRGB for non-HDR devices.
 
 ```css
 body {
@@ -32,13 +40,11 @@ body {
 }
 ```
 
-oklch is [supported by all modern browsers](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch#browser_compatibility).
-
-This HDR converter tool rounds the oklch values to 3 decimal places, since more precision isn't really necessary and long numbers would just make your CSS file bigger.
+My HDR converter tool rounds oklch values to 3 decimal places, since more precision isn't really necessary and long numbers would just make your CSS file bigger.
 
 ## How do I get images to display in HDR?
 
-Want to directly map sRGB colors in an image to an HDR color space?
+To directly map sRGB colors in an image to an HDR color space, you'll need to use a photo editor that supports HDR color spaces. Here's how to do it in Photoshop:
 
 In Photoshop's menu go to Edit > Color Settings...
 
@@ -48,15 +54,27 @@ Then set "Color Management Policies" RGB to "Convert to Working RGB".
 
 When you export an image make sure that "Convert to sRGB" is unchecked and "Embed Color Profile" is checked.
 
+After exporting an image it should have your specified HDR color space embedded in it.
+
 ## How do I get SVGs to display in HDR?
 
 There are probably color settings you can adjust in Illustrator but my SVGs were pretty simple so I just changed the colors directly in the SVG code.
 
 I added a CSS `<style>` tag to the SVG and gave all the paths a class name. Note that media queries don't work in SVGs, so you should just use oklch colors.
 
-Check out this article for more info:
+Check out the article ["How to use P3 colors with SVGs"](https://evilmartians.com/chronicles/how-to-use-p3-colors-in-svg) for more info.
 
-https://evilmartians.com/chronicles/how-to-use-p3-colors-in-svg
+## How do I use HDR colors in JavaScript?
+
+First check if the device is HDR capable:
+
+```js
+window.matchMedia('(dynamic-range: high) and (color-gamut: p3)').matches;
+```
+
+You can use the [culori](https://culorijs.org/) library to parse colors and convert between color spaces.
+
+Take a look at the article ["HDR Displays and CSS: Enhancing Color and Brightness on the Web"](https://habr.com/en/articles/715084/) for more info.
 
 ## How'd you figure all this out?
 
@@ -68,9 +86,7 @@ I changed my Color Display Profile on my MacBook back to the default "Color LCD"
 
 If I opened up my website assets in InkScape and Photoshop, they'd look great in the editor, but after exporting they'd look dull. I tried to mess around with the export settings but nothing worked. I was so confused.
 
-After lots of searching, I finally found this video [Get Started with Display P3](https://developer.apple.com/videos/play/wwdc2017/821). It kind of sucks because it's not in HDR and the projector they used didn't support HDR either, so all the examples they're showing are fake. At least the video provides some good information about how to use HDR colors though.
-
-The little SDR and HDR color demos shown in this tool are legit and if you have an HDR device you can see for yourself that the HDR colors are more vibrant.
+After lots of searching, I finally found this video [Get Started with Display P3](https://developer.apple.com/videos/play/wwdc2017/821). It kind of sucks because it's not in HDR and the projector they used didn't support HDR either, so all the examples they're showing are fake. At least the video provides some good information.
 
 ## License
 
