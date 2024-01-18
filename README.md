@@ -2,6 +2,8 @@
 
 Let's make the web more vibrant!
 
+https://quinton-ashley.github.io/hdr-web-design-guide/
+
 ## What is HDR?
 
 HDR (High Dynamic Range) colors aren't just for movies and games, you can use them to make better looking websites too!
@@ -14,7 +16,7 @@ What good are all these HDR displays if we're not going to use them to their ful
 
 ## HDR Color Conversion
 
-This [HDR Color Converter](converter.html) converts SDR colors directly to HDR, without mapping to the smaller SDR gamut, essentially giving you more vibrant colors to use on HDR devices.
+This [HDR Color Converter](https://quinton-ashley.github.io/hdr-web-design-guide/converter.html) converts SDR colors directly to HDR, without mapping to the smaller SDR gamut, essentially giving you more vibrant colors to use on HDR devices.
 
 "srgb" is a [color space](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color) that became the standard for the web in 1996. You've probably been using it in the iconic HEX format. It's a bit sad, but to use HDR colors you'll need to use a different format. All HDR devices support the "display-p3" color space and newer devices support the "rec2020" color space.
 
