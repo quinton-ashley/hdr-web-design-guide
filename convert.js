@@ -14,11 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			let p3 = `color(display-p3 ${r} ${g} ${b})`;
 			document.getElementById('displayP3Color').value = p3;
 
+			p3 = `color(display-p3 ${c.r} ${c.g} ${c.b})`;
+
 			// Convert P3 to OKLCH
 			let o = culori.converter('oklch')(culori.parse(p3));
 			let lightness = Math.round(o.l * 1000) / 1000;
 			let chroma = Math.round(o.c * 1000) / 1000;
-			let hue = Math.round(o.h * 1000) / 1000;
+			let hue = Math.round((o.h || 0) * 1000) / 1000;
 			let oklch = `oklch(${lightness} ${chroma} ${hue})`;
 			document.getElementById('oklchColor').value = oklch;
 

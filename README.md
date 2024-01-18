@@ -34,6 +34,8 @@ body {
 
 oklch is [supported by all modern browsers](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch#browser_compatibility).
 
+This HDR converter tool rounds the oklch values to 3 decimal places, since more precision isn't really necessary and long numbers would just make your CSS file bigger.
+
 ## How do I get images to display in HDR?
 
 Want to directly map sRGB colors in an image to an HDR color space?
